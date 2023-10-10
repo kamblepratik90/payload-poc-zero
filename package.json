@@ -23,7 +23,8 @@
     "copyfiles": "^2.4.1",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "mongodb": "^4.3.0",
+    "mongodb": "^4.17.1",
+    "mongoose": "^7.6.1",
     "node-cron": "^3.0.0",
     "payload": "^1.10.1",
     "qs": "^6.10.3"
