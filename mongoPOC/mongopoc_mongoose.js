@@ -62,6 +62,32 @@ async function updateSingleDocument() {
     console.log('Matched', result.matchedCount, 'document(s) and modified', result.modifiedCount, 'document(s)');
 }
 
+async function findAllAndUpdateSingleDocument_oneByOne_liek_payload() {
+
+    console.time('----->>>>findAllAndUpdateSingleDocument_oneByOne_liek_payload------->');
+    
+    console.time(`----->>>>findAll_${TOTAL_ITEMS}------->`);
+    const allDocs = await myModel.find({});
+    console.timeEnd(`----->>>>findAll_${TOTAL_ITEMS}------->`);
+
+    const promises = allDocs.map(async (doc) => {
+        const id = doc._id;
+        // console.log("doc: ", JSON.stringify(doc));
+        doc.name =  `${doc.name}_updated`;
+        doc.status =  `Inactive`;
+        const result = await myModel.findByIdAndUpdate({ _id: id }, doc, { new: true });
+        // console.log("result: ", JSON.stringify(result));
+        return result;
+    });
+    await Promise.all(promises);
+
+    // const result = await myModel.updateOne({ name: 'Alice' }, { email: 'updated-alice@example.com' });
+    // console.timeEnd('----->>>>findAllAndUpdateSingleDocument_oneByOne_liek_payload------->');
+
+    // console.log('Matched', result.matchedCount, 'document(s) and modified', result.modifiedCount, 'document(s)');
+    console.timeEnd('----->>>>findAllAndUpdateSingleDocument_oneByOne_liek_payload------->');
+}
+
 async function updateManyDocuments() {
 
     console.time('----->>>>updateManyDocuments------->');
@@ -94,10 +120,11 @@ async function seedData() {
         console.log("\n");
         await insertManyDocuments().catch(console.error);
         console.log("\n");
-        await updateSingleDocument().catch(console.error);
-        console.log("\n");
-        await updateManyDocuments().catch(console.error);
-        console.timeEnd('----->>>>seeding------->');
+        await findAllAndUpdateSingleDocument_oneByOne_liek_payload().catch(console.error);
+        // await updateSingleDocument().catch(console.error);
+        // console.log("\n");
+        // await updateManyDocuments().catch(console.error);
+        // console.timeEnd('----->>>>seeding------->');
 
     } finally {
         mongoose.connection.close();

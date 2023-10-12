@@ -33,7 +33,7 @@ const ContentCms = {
       type: 'text',
       required: true,
       // localized fields are stored as keyed objects to represent 
-      // each locale listed in the payload.config.ts. For example: { en: 'English', es: 'Espanol', ...etc }
+      // each locale listed in the payload.config.ts. For example: { en: 'English', fe: `French`, es: 'Espanol', ...etc }
       localized: true,
     },
     // {

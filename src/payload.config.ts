@@ -13,6 +13,15 @@ import Pages from './collections/Pages';
 import ContentCms from './collections/ContentCms';
 import JurisdictionCms from './collections/JurisdictionCms';
 import JurisdictionMeta from './collections/JurisdictionMeta';
+
+import BaseKeyValues from './collections/BaseKeyValues';
+import JuriKeyValues from './collections/JuriKeyValues';
+import JuriLanguages from './collections/JuriLanguages';
+import Languages from './collections/Languages';
+import LanguageTree from './collections/LanguageTree';
+import Orgnizations from './collections/Organizations';
+import Sample from './collections/Sample';
+
 import MainMenu from './globals/MainMenu';
 import BeforeLogin from './components/BeforeLogin';
 import AfterDashboard from "./components/AfterDashboard";
@@ -44,7 +53,9 @@ export default buildConfig({
   },
 
   // collections in Payload are synonymous with database tables, models or entities from other frameworks and systems
-  collections: [Categories, Media, Posts, Pages, Users, Alerts, Cms, ContentCms, JurisdictionCms, JurisdictionMeta],
+  collections: [Categories, Media, Posts, Pages, Users, Alerts, 
+    // Cms, ContentCms, JurisdictionCms, JurisdictionMeta,
+     BaseKeyValues, JuriKeyValues, JuriLanguages, Languages, LanguageTree, Orgnizations, Sample],
 
   // globals are a single-instance collection, often used for navigation or site settings that live in one place
   globals: [MainMenu],
